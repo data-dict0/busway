@@ -1,0 +1,133 @@
+#topper-scrolly {
+  --counter-h: 96px;
+  position: relative;
+}
+/* pinned above the steps so the cards slide under the count instead of covering it */
+.scrolly-counter {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  height: var(--counter-h);
+  padding-top: 12px;
+  box-sizing: border-box;
+  background: #fff;
+  text-align: center;
+  color: rgb(33, 37, 41);
+}
+.scrolly-graphic {
+  position: -webkit-sticky;
+  position: sticky;
+  top: var(--counter-h);
+  z-index: 1;
+  height: calc(100vh - var(--counter-h));
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 24px;
+  box-sizing: border-box;
+}
+.scrolly-count {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.scrolly-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: rgb(110, 110, 110);
+}
+.scrolly-chart {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+.scrolly-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+.scrolly-svg .icon {
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+.scrolly-svg .icon.is-on {
+  opacity: 1;
+}
+.scrolly-steps {
+  position: relative;
+  z-index: 2;
+  margin-top: -100vh;
+}
+.scrolly-step {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+.scrolly-step > div {
+  max-width: 420px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 20px rgba(33, 37, 41, 0.16);
+  font-size: 17px;
+  line-height: 1.45;
+  color: rgb(33, 37, 41);
+}
+.scrolly-step[data-step="1"] {
+  align-items: flex-end;
+  padding-bottom: 8vh;
+}
+.scrolly-step-title > div {
+  max-width: 640px;
+  text-align: center;
+}
+.scrolly-step-title .dek {
+  margin-bottom: 0;
+}
+@supports (height: 100svh) {
+  .scrolly-graphic {
+    height: calc(100svh - var(--counter-h));
+  }
+  .scrolly-steps {
+    margin-top: -100svh;
+  }
+  .scrolly-step {
+    min-height: 100svh;
+  }
+}
+@media (max-width: 499px) {
+  #topper-scrolly {
+    --counter-h: 76px;
+  }
+  .scrolly-counter {
+    padding-top: 8px;
+  }
+  .scrolly-count {
+    font-size: 32px;
+  }
+  .scrolly-legend {
+    font-size: 13px;
+  }
+  .scrolly-graphic {
+    padding: 0 10px 16px;
+  }
+  .scrolly-step-title .title {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .scrolly-step > div {
+    font-size: 15px;
+    padding: 12px 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scrolly-svg .icon {
+    transition: none;
+  }
+}
